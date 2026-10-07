@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --bg-main: #141414;
+  --bg-pure: #000000;
+  --bg-elevated: #181818;
+  --bg-card: #202020;
+  --bg-card-hover: #2a2a2a;
+  --red-primary: #E50914;
+  --red-hover: #f40612;
+  --red-glow: rgba(229, 9, 20, 0.45);
+  --text-primary: #FFFFFF;
+  --text-secondary: #B3B3B3;
+  --text-muted: #808080;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.35);
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Montserrat', var(--font-sans);
+  --font-cinematic: 'Bebas Neue', sans-serif;
+  --font-quote: 'Cormorant Garamond', Georgia, serif;
+  
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.65);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.85);
+  --shadow-red: 0 0 35px rgba(229, 9, 20, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red-primary);
+}
+
+/* Streaming Layout Standards */
+.streaming-container {
+  width: 100%;
+  max-width: 94vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .streaming-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Netflix Red Logo Monogram */
+.a-monogram {
+  font-family: var(--font-cinematic);
+  color: var(--red-primary);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-shadow: 0 0 20px var(--red-glow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+
+/* Cinematic Gradients */
+.hero-gradient-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.94) 0%,
+    rgba(0, 0, 0, 0.72) 40%,
+    rgba(0, 0, 0, 0.25) 75%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+
+.hero-bottom-fade {
+  background: linear-gradient(
+    0deg,
+    #141414 0%,
+    rgba(20, 20, 20, 0.85) 35%,
+    rgba(20, 20, 20, 0.3) 70%,
+    transparent 100%
+  );
+}
+
+.radial-vignette {
+  background: radial-gradient(
+    circle at center,
+    transparent 45%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+/* Horizontal Shelves */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card hover animation */
+.streaming-card {
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease, z-index 0.3s step-start;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--bg-card);
+}
+
+.streaming-card:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--shadow-hover);
+  z-index: 20;
+}
+
+/* Monogram stroke animation */
+@keyframes drawRedLine {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(229, 9, 20, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(229, 9, 20, 0.85));
+  }
+}
+
+.animate-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Film Grain subtle overlay */
+.film-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Mom POV theme overlay */
+.mom-pov-active {
+  --border-subtle: rgba(255, 180, 180, 0.22);
+}
+
+.mom-handwritten {
+  font-family: var(--font-quote);
+  font-style: italic;
+  color: #ffcccc;
+  letter-spacing: 0.03em;
+}
+
+/* Egg Roll Animation */
+@keyframes eggRoll {
+  0% {
+    transform: translateX(-100px) rotate(-360deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-egg-roll {
+  animation: eggRoll 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Buffer animation */
+@keyframes bufferRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.buffer-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: var(--red-primary);
+  border-radius: 50%;
+  animation: bufferRotate 0.9s linear infinite;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-dropdown {
+  background: rgba(18, 18, 18, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
